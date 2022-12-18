@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
+import EditBar from './component/EditBar';
+import SearchBox from './component/SearchBox';
+import SearchStatus from './component/SearchStatus';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-5 mb-3 max-w-xs">
+      <EditBar />
+      <div className="d-flex gap-3 my-4">
+      <SearchBox />
+      <SearchStatus />
+      </div>
     </div>
   );
 }
