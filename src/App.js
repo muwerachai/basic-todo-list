@@ -17,9 +17,16 @@ const initialTodos = [
 
 function App() {
   const [todos, setTodos] = useState(initialTodos);
+
+  const createTodo = newTitle => {
+    const newTodo = {id: uuidv4(), title: newTitle,completed: false};
+    const cloneTodos = [...todos];
+    cloneTodos.push(newTodo);
+    setTodos(cloneTodos);
+  };
   return (
     <div className="container mt-5 mb-3 max-w-xs">
-      <EditBar />
+      <EditBar createTodo={createTodo}/>
       <div className="d-flex gap-3 my-4">
       <SearchBox />
       <SearchStatus />
