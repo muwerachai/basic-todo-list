@@ -1,11 +1,11 @@
 import TodoItem from './TodoItem';
 
-function TodoList() {
+function TodoList(props) {
   return (
     <ul className="list-group my-2">
-      <TodoItem completed title="Shopping" />
-      <TodoItem title="Dinner" />
-      <TodoItem title="Swimming" />
+  {props.todos.map(item => (
+    <TodoItem key={item.id} title={item.title} completed={item.completed} />
+    ))}
     </ul>
   );
 }
