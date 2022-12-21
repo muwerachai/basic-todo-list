@@ -1,7 +1,7 @@
 import { useState} from 'react';
 
 function EditBar(props) {
-    const [input,setInput] = useState('');
+    const [input,setInput] = useState(props.title || '');
     const [error,setError] = useState('');
     const handleClickSave = () => {
         // validate error
@@ -9,11 +9,23 @@ function EditBar(props) {
             setError('Title is required.');
         } else{
             setError('');
-            props.createTodo(input);
+            if (props.title) {
+                props.updateTodo(props.id,input);
+                props.toggleEditing();
+            }else{
+            props.createTodo(input);    
+            }
+            
             setInput('');
         }
-        
     };
+    const handleClickCancel = () => {
+        if(props.toggleEditing) {
+            props.toggleEditing();
+        }else{
+            setInput('');
+        }
+    }
 return (
     <>
      <div className="input-group">
@@ -26,7 +38,7 @@ return (
         <button className="btn btn-success" onClick={handleClickSave}>
             <i className="fa-solid fa-check" />
         </button>
-        <button className="btn btn-secondary" onClick={() => setInput('')}>
+        <button className="btn btn-secondary" onClick={handleClickCancel}>
         <i className="fa-solid fa-xmark" />
         </button>
     </div>
